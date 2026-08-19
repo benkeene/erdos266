@@ -1,0 +1,141 @@
+# formalization.yaml — adopted from https://github.com/mathlib-initiative/formalization.yaml
+version: "v0.4"
+
+project:
+  name: "Erdős problem #266: the Kovač–Tao disproof of Stolarsky's conjecture"
+  description: >-
+    A Lean 4 formalization, against Mathlib, of the Kovač–Tao resolution of
+    Erdős problem #266 (a conjecture of Stolarsky): it is not true that every
+    sequence of positive integers with convergent reciprocal sum admits an
+    integer shift t >= 1 making the shifted Ahmes series irrational.  The
+    stronger construction is also formalized: a strictly increasing sequence
+    of positive integers whose shifted series has a rational sum for every
+    admissible rational shift.
+  authors:
+    - "Ben Keene"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Ben Keene"
+
+repository:
+  role: substantive-development
+
+classification:
+  arxiv: [math.NT, math.CA]
+  msc2020: ["11J72", "40A05", "11B83"]
+
+status:
+  scope: >-
+    WORK IN PROGRESS.  This repository is a development scaffold: the
+    Challenge statements are fixed, the Solution module is not yet proved, and
+    no Palomar submission will be made until the development is sorry-free.
+    The sorry counts below describe the current state and will be updated.
+  sorry_count: 2
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - "Erdos266.erdos_266"
+    - "Erdos266.erdos_266_rational_shifts"
+
+fidelity:
+  divergences: >-
+    One statement-fidelity point is under active verification.  The arXiv
+    abstract of the source paper [KoTa24] states the final construction for
+    integer shifts (t in Z), while erdosproblems.com/266 and the Formal
+    Conjectures statement record the result for all rational shifts (t in Q).
+    The stronger rational-shift form is what Challenge.lean states, following
+    the Formal Conjectures statement; it will be checked against the body of
+    the published paper before submission, and weakened to the integer form
+    if that is what the paper proves.  The compared statement
+    Erdos266.erdos_266 (the negative answer to the Erdős problem itself) is
+    implied by either form.
+
+sources:
+  - title: "On several irrationality problems for Ahmes series"
+    authors: ["Vjekoslav Kovač", "Terence Tao"]
+    type: "article"
+    id: "https://arxiv.org/abs/2406.17593"
+    relationship: formalizes
+    note: >-
+      The paper whose construction this development formalizes.  The negative
+      answer to Stolarsky's question (Erdős problem #266) is its final result.
+
+  - title: "Erdős problem #266 (erdosproblems.com)"
+    authors: ["Thomas F. Bloom (site); problem due to Kenneth Stolarsky, recorded by Erdős and Graham"]
+    type: "web page"
+    id: "https://www.erdosproblems.com/266"
+    relationship: background
+    note: >-
+      The canonical record of the problem, its provenance, and its resolution
+      status.  Used to fix the informal statement of record.
+
+  - title: "Formal Conjectures: ErdosProblems/266.lean"
+    authors: ["The Formal Conjectures Authors"]
+    type: "code"
+    id: "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/266.lean"
+    relationship: adapts
+    note: >-
+      The formal statements in Challenge.lean are adapted from this file
+      (Apache 2.0): category attributes removed, declarations renamed into
+      the Erdos266 namespace, mathematical content unchanged.
+
+related_formalizations: []
+
+automation:
+  methods:
+    - method: agent
+      models: ["Claude Fable 5 (Anthropic)"]
+      framework: "Claude Code"
+      role: >-
+        Scaffolded the repository and is expected to write most of the Lean
+        source, working interactively in Claude Code under the direction and
+        review of the author: choosing Lean formulations, finding and
+        repairing proofs.  The author selects the targets, makes the
+        mathematical decisions, audits the Challenge statements against the
+        sources, and reviews the output as it is produced.
+
+review:
+  status: self-assessed
+  reviewers:
+    - "Ben Keene"
+  notes: >-
+    The author directs and reviews the development as it is produced.  No
+    external or independent review has been performed.  Every step is checked
+    by Lean.
+
+known_gaps:
+  - >-
+    The Solution module is not yet proved (2 sorries); the development library
+    is empty.  This entry must not be read as a claim that the formalization
+    is complete.
+
+limitations:
+  - >-
+    No novelty is claimed anywhere.  The mathematics is due to Kovač and Tao;
+    this repository contributes only its formalization, and the formal
+    statements are adapted from the Formal Conjectures project.
+  - >-
+    The compared theorems are to depend on propext, Classical.choice and
+    Quot.sound only, with no sorry outside the two deliberate holes in
+    Challenge.lean, no project-defined axiom, no native_decide, and no unsafe
+    code.  This is enforced by CI once the development is complete.
+
+alignment:
+  namespace: "Erdos266"
+  statements:
+    - source: "Stolarsky's conjecture / Erdős problem #266, resolved negatively in [KoTa24]"
+      lean: "Erdos266.erdos_266"
+      module: "Challenge (statement), Solution (proof)"
+      status: in-progress
+      note: >-
+        The statement of record, compared by Comparator, in the form given by
+        the Formal Conjectures project: the negation of the universally
+        quantified conjecture.
+    - source: "[KoTa24], final theorem: a sequence whose shifted Ahmes series are all rational"
+      lean: "Erdos266.erdos_266_rational_shifts"
+      module: "Challenge (statement), Solution (proof)"
+      status: in-progress
+      note: >-
+        The construction that yields the negative answer; see
+        fidelity.divergences for the integer-versus-rational-shift point
+        under verification.
