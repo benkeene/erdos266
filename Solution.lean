@@ -11,25 +11,28 @@ import Erdos266
 The two declarations of `Challenge.lean`, proved.  Each is a thin bridge to
 the corresponding theorem of the `Erdos266` development library.
 
-**Status: work in progress.**  The bridges currently contain `sorry` and the
-development library is being built; nothing may be submitted to Palomar until
+**Status: work in progress.**  The construction (`erdos_266_rational_shifts`)
+is not yet proved; the negative answer to the Erdős problem is derived from
+it by `Erdos266.erdos_266_of_rationalShifts` and becomes sorry-free the
+moment the construction does.  Nothing may be submitted to Palomar until
 this module is sorry-free and depends only on `propext`, `Classical.choice`
 and `Quot.sound`.
 -/
 
 namespace Erdos266
 
-/-- **Erdős problem #266 / Stolarsky's conjecture, disproved** (Kovač–Tao). -/
-theorem erdos_266 :
-    ¬ ∀ (a : ℕ → ℕ), ((∀ n : ℕ, a n ≥ 1) ∧ Summable ((1 : ℝ) / a ·) →
-      ∃ t ≥ (1 : ℕ), Irrational <| ∑' n, (1 : ℝ) / ((a n) + t)) := by
-  sorry
-
-/-- **The Kovač–Tao construction.** -/
+/-- **The Kovač–Tao construction** (Theorem 2.11 of [KoTa24]). -/
 theorem erdos_266_rational_shifts :
     ∃ a : ℕ → ℕ, StrictMono a ∧ a 0 ≥ 1 ∧
       (∀ t : ℚ, (¬ ∃ n : ℕ, t = -(a n)) →
         (∃ q : ℚ, HasSum (fun n : ℕ => ((1 : ℝ) / ((a n) + t))) q)) := by
   sorry
+
+/-- **Erdős problem #266 / Stolarsky's conjecture, disproved** (Kovač–Tao),
+derived from the construction. -/
+theorem erdos_266 :
+    ¬ ∀ (a : ℕ → ℕ), ((∀ n : ℕ, a n ≥ 1) ∧ Summable ((1 : ℝ) / a ·) →
+      ∃ t ≥ (1 : ℕ), Irrational <| ∑' n, (1 : ℝ) / ((a n) + t)) :=
+  erdos_266_of_rationalShifts erdos_266_rational_shifts
 
 end Erdos266
