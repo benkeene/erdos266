@@ -39,16 +39,18 @@ status:
 
 fidelity:
   divergences: >-
-    One statement-fidelity point is under active verification.  The arXiv
-    abstract of the source paper [KoTa24] states the final construction for
-    integer shifts (t in Z), while erdosproblems.com/266 and the Formal
-    Conjectures statement record the result for all rational shifts (t in Q).
-    The stronger rational-shift form is what Challenge.lean states, following
-    the Formal Conjectures statement; it will be checked against the body of
-    the published paper before submission, and weakened to the integer form
-    if that is what the paper proves.  The compared statement
-    Erdos266.erdos_266 (the negative answer to the Erdős problem itself) is
-    implied by either form.
+    The arXiv abstract of [KoTa24] states the final construction for integer
+    shifts (t in Z) only; the body of the paper proves more.  Checked against
+    arXiv v4 (14 Jul 2025): Erdos266.erdos_266_rational_shifts is Theorem
+    2.11 verbatim — a strictly increasing sequence of positive integers whose
+    shifted series converges to a rational for every t in Q avoiding {-a_n} —
+    and Section 2.3 states explicitly that the conjecture is disproved "not
+    only when t ranges over the integers" but for rational t.
+    Erdos266.erdos_266 is the negative answer to Stolarsky's conjecture as
+    recorded by Erdős–Graham (integer shifts t >= 1), implied by Theorem
+    2.11.  "Converges to a rational" is rendered as HasSum toward the real
+    embedding of a rational; for these series (all but finitely many terms
+    positive) unconditional and ordered convergence agree.
 
 sources:
   - title: "On several irrationality problems for Ahmes series"

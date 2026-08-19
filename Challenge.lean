@@ -62,12 +62,13 @@ namespace; the mathematical content is unchanged).
 Nothing here is claimed to be new mathematics: the theorems are due to Kovač
 and Tao, and this repository contributes their formalization.  See
 `formalization.yaml` and README.md for sources, the role of AI in producing
-the development, and known limitations — including one statement-fidelity
-point under active verification: the arXiv abstract of [KoTa24] states the
-final construction for integer shifts `t ∈ ℤ`, while the paper's full result
-as recorded by erdosproblems.com and the Formal Conjectures project covers
-all rational shifts `t ∈ ℚ`.  The stronger `ℚ` form is stated here and will
-be checked against the paper body before any submission.
+the development, and known limitations.  Statement fidelity was checked
+against the paper: `erdos_266_rational_shifts` is Theorem 2.11 of [KoTa24]
+(arXiv v4) verbatim — the rational-shift form `t ∈ ℚ \ {-aₙ}` is what the
+paper proves (its abstract states only the integer-shift specialization),
+and `erdos_266` is the negative answer to Stolarsky's conjecture in the form
+recorded by Erdős–Graham (integer shifts `t ≥ 1`), which Theorem 2.11
+implies.
 
 The proofs are developed in the `Erdos266` library of this repository and are
 compared against these statements by Comparator.  They are to use `propext`,

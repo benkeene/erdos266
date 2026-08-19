@@ -33,13 +33,12 @@ expected by the [Palomar registry](https://palomar-registry.org/):
 
 ## Roadmap
 
-1. **Statement-fidelity check** (in progress): the arXiv abstract states the
-   final construction for integer shifts $t \in \mathbb{Z}$; the problem page
-   and the Formal Conjectures statement record it for all rational
-   $t \in \mathbb{Q}$.  Verify against the paper body which form is proved,
-   and weaken the second Challenge statement if necessary.  (The first
-   compared statement — the negative answer to #266 itself — is implied by
-   either form.)
+1. **Statement-fidelity check** (done): Theorem 2.11 of the paper (arXiv v4)
+   proves the rational-shift form $t \in \mathbb{Q} \setminus \{-a_n\}$
+   verbatim as stated in `Challenge.lean`; the abstract states only the
+   integer-shift specialization.  The proof is Section 8, building on the
+   Section 7 machinery for Theorem 2.8 (simultaneous rationality in $d$
+   dimensions), with, per the authors, the same common ingredients.
 2. Glue: derive `Erdos266.erdos_266` from `Erdos266.erdos_266_rational_shifts`.
 3. Formalize the construction, its convergence estimates, and the
    rationality of the shifted sums.
