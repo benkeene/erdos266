@@ -100,7 +100,7 @@ for each fixed $i$ the poles affect only an explicitly finite prefix.
 | `Reduction.lean` | strong induction: `(∀ i ≥ 1, ∑ f i (a n) ∈ ℚ)` + monotone ⇒ `RationalShifts a` (with pole corrections; summability hypothesis turned out unnecessary) | **done** |
 | `SlopeLemma.lean` | Lemma 7.1, existential constant (via telescoping products, no calculus; constant `3(i+1)²16^i`) | **done** |
 | `LatticeLemma.lean` | Lemma 7.2: adjugate-based integer preimages, toward-zero rounding, Vandermonde determinant (no operator norms) | **done** |
-| `Growth.lean` | `N k = 2^(k^2)`, (8.1), (8.2)-consequences, `M k`, `m(d)`, `d(k)`, `δ i k`, (7.17) | — |
+| `Growth.lean` | `N k = 2^(k^2)`, `M k`, cross-block separation, `growth_eventually` ((7.17)-enabler), crude `f`-bounds | **done** (`m(d)`, `d(k)`, `δ` move to `Algorithm`) |
 | `Algorithm.lean` | recursive block construction + invariant (8.5) | — |
 | `Convergence.lean` | monotone/positive/summable; nested intervals ⇒ `∑ f i (a n) = x i` | — |
 | `Main.lean` | assemble `erdos_266_rational_shifts` | — |
