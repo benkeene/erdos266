@@ -11,12 +11,10 @@ import Erdos266
 The two declarations of `Challenge.lean`, proved.  Each is a thin bridge to
 the corresponding theorem of the `Erdos266` development library.
 
-**Status: work in progress.**  The construction (`erdos_266_rational_shifts`)
-is not yet proved; the negative answer to the Erdős problem is derived from
-it by `Erdos266.erdos_266_of_rationalShifts` and becomes sorry-free the
-moment the construction does.  Nothing may be submitted to Palomar until
-this module is sorry-free and depends only on `propext`, `Classical.choice`
-and `Quot.sound`.
+Both are complete: the construction is `Erdos266.construction_exists`
+(the block algorithm of Sections 7–8 of [KoTa24], run through the
+reduction `Erdos266.rational_shifts_of_construction`), and the negative
+answer to the Erdős problem follows by `Erdos266.erdos_266_of_rationalShifts`.
 -/
 
 namespace Erdos266
@@ -25,8 +23,8 @@ namespace Erdos266
 theorem erdos_266_rational_shifts :
     ∃ a : ℕ → ℕ, StrictMono a ∧ a 0 ≥ 1 ∧
       (∀ t : ℚ, (¬ ∃ n : ℕ, t = -(a n)) →
-        (∃ q : ℚ, HasSum (fun n : ℕ => ((1 : ℝ) / ((a n) + t))) q)) := by
-  sorry
+        (∃ q : ℚ, HasSum (fun n : ℕ => ((1 : ℝ) / ((a n) + t))) q)) :=
+  rational_shifts_of_construction construction_exists
 
 /-- **Erdős problem #266 / Stolarsky's conjecture, disproved** (Kovač–Tao),
 derived from the construction. -/

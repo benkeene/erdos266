@@ -5,6 +5,7 @@ Authors: Ben Keene
 -/
 import Erdos266.Algorithm
 import Erdos266.Basic
+import Erdos266.Convergence
 import Erdos266.Defs
 import Erdos266.Enumeration
 import Erdos266.Glue

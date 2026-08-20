@@ -1,7 +1,9 @@
 # Erdős problem #266 — a Lean formalization of the Kovač–Tao disproof of Stolarsky's conjecture
 
-**Status: work in progress** (scaffold; nothing is proved yet — the Solution
-module contains 2 deliberate `sorry`s and the development library is empty).
+**Status: complete.**  Both theorems are fully proved; the only `sorry`s in
+the repository are the two deliberate holes in `Challenge.lean` (the
+Comparator convention), and both compared theorems depend on exactly
+`propext`, `Classical.choice` and `Quot.sound`.
 
 ## What this is
 
@@ -31,21 +33,22 @@ expected by the [Palomar registry](https://palomar-registry.org/):
 - [`formalization.yaml`](formalization.yaml) — metadata, sources, automation
   disclosures, and known limitations.
 
-## Roadmap
+## Structure of the proof
 
-1. **Statement-fidelity check** (done): Theorem 2.11 of the paper (arXiv v4)
-   proves the rational-shift form $t \in \mathbb{Q} \setminus \{-a_n\}$
-   verbatim as stated in `Challenge.lean`; the abstract states only the
-   integer-shift specialization.  The proof is Section 8, building on the
-   Section 7 machinery for Theorem 2.8 (simultaneous rationality in $d$
-   dimensions), with, per the authors, the same common ingredients.
-2. Glue: derive `Erdos266.erdos_266` from `Erdos266.erdos_266_rational_shifts`.
-3. Formalize the construction, its convergence estimates, and the
-   rationality of the shifted sums.
-4. Audit: sorry-free, axioms exactly `propext`, `Classical.choice`,
-   `Quot.sound`; run Comparator locally.
-5. Submit to Palomar and PR the formalization link to
-   [teorth/erdosproblems](https://github.com/teorth/erdosproblems).
+See `docs/plan.md` for the full module map.  In brief: `Enumeration` (a
+growth-bounded enumeration of ℚ), `Defs` (partial fractions via Lagrange
+interpolation), `Reduction` (the triangular induction turning rational
+`f`-sums into rational shifted sums, with pole bookkeeping), `SlopeLemma`
+(Lemma 7.1, by telescoping products — no calculus), `LatticeLemma`
+(Lemma 7.2, adjugate-based integer preimages of a Vandermonde system),
+`Growth` (the scale sequence $N_k = 2^{k^2}$), `Algorithm`/`Recursion`
+(the block construction and its invariant (8.5)), `Convergence`
+(extraction of the sequence and the `HasSum`s), `Glue` (the Erdős-problem
+statement from the construction).
+
+Remaining steps toward registration: local Comparator run, final review,
+Palomar submission, and a PR of the formalization link to
+[teorth/erdosproblems](https://github.com/teorth/erdosproblems).
 
 ## Building
 

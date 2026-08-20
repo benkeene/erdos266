@@ -102,8 +102,8 @@ for each fixed $i$ the poles affect only an explicitly finite prefix.
 | `LatticeLemma.lean` | Lemma 7.2: adjugate-based integer preimages, toward-zero rounding, Vandermonde determinant (no operator norms) | **done** |
 | `Growth.lean` | `N k = 2^(k^2)`, `M k`, cross-block separation, `growth_eventually` ((7.17)-enabler), crude `f`-bounds | **done** (`m(d)`, `d(k)`, `δ` move to `Algorithm`) |
 | `Algorithm.lean` + `Recursion.lean` | setup layer (constants, mseq, dOf, tails) and the recursive block construction with invariant (8.5) — `inv_run` | **done** |
-| `Convergence.lean` | monotone/positive/summable; nested intervals ⇒ `∑ f i (a n) = x i` | — |
-| `Main.lean` | assemble `erdos_266_rational_shifts` | — |
+| `Convergence.lean` | stability, extraction, monotonicity, regrouping, squeeze ⇒ `HasSum`; `construction_exists` | **done** |
+| `Main.lean` | (absorbed into `Convergence.lean` + `Solution.lean`) — **the proof is complete** | **done** |
 
 Suggested order of attack: Enumeration → Defs → Reduction (these three give a
 complete conditional path from "the construction exists" to the Challenge),

@@ -26,10 +26,11 @@ classification:
 
 status:
   scope: >-
-    WORK IN PROGRESS.  This repository is a development scaffold: the
-    Challenge statements are fixed, the Solution module is not yet proved, and
-    no Palomar submission will be made until the development is sorry-free.
-    The sorry counts below describe the current state and will be updated.
+    COMPLETE.  Both compared theorems are fully proved.  The only two
+    `sorry`s in the repository are the deliberate holes in Challenge.lean
+    (the Comparator convention); Solution.lean and the entire Erdos266
+    development library are sorry-free, and both compared theorems depend
+    on exactly propext, Classical.choice and Quot.sound.
   sorry_count: 2
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
@@ -105,11 +106,7 @@ review:
     external or independent review has been performed.  Every step is checked
     by Lean.
 
-known_gaps:
-  - >-
-    The Solution module is not yet proved (2 sorries); the development library
-    is empty.  This entry must not be read as a claim that the formalization
-    is complete.
+known_gaps: []
 
 limitations:
   - >-
@@ -117,10 +114,9 @@ limitations:
     this repository contributes only its formalization, and the formal
     statements are adapted from the Formal Conjectures project.
   - >-
-    The compared theorems are to depend on propext, Classical.choice and
-    Quot.sound only, with no sorry outside the two deliberate holes in
-    Challenge.lean, no project-defined axiom, no native_decide, and no unsafe
-    code.  This is enforced by CI once the development is complete.
+    The compared theorems depend on propext, Classical.choice and Quot.sound
+    only, with no sorry outside the two deliberate holes in Challenge.lean,
+    no project-defined axiom, no native_decide, and no unsafe code.
 
 alignment:
   namespace: "Erdos266"
@@ -128,7 +124,7 @@ alignment:
     - source: "Stolarsky's conjecture / Erdős problem #266, resolved negatively in [KoTa24]"
       lean: "Erdos266.erdos_266"
       module: "Challenge (statement), Solution (proof)"
-      status: in-progress
+      status: proved
       note: >-
         The statement of record, compared by Comparator, in the form given by
         the Formal Conjectures project: the negation of the universally
@@ -136,7 +132,7 @@ alignment:
     - source: "[KoTa24], final theorem: a sequence whose shifted Ahmes series are all rational"
       lean: "Erdos266.erdos_266_rational_shifts"
       module: "Challenge (statement), Solution (proof)"
-      status: in-progress
+      status: proved
       note: >-
         The construction that yields the negative answer; see
         fidelity.divergences for the integer-versus-rational-shift point
