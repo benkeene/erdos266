@@ -14,15 +14,12 @@ Kovač–Tao, *On several irrationality problems for Ahmes series*
 sequence of positive integers whose shifted Ahmes series `∑ 1/(aₙ + t)` has a
 rational sum for every admissible shift `t`.
 
-Planned structure (subject to revision as the paper is digested):
-
-* `Erdos266.Glue` — derivation of the negative answer to Erdős #266 from the
-  rational-shifts construction (elementary; a good first target).
-* `Erdos266.Construction` — the iterative construction of the sequence `aₙ`.
-* `Erdos266.Convergence` — the growth and summability estimates.
-* `Erdos266.Rationality` — rationality of each shifted sum.
-
-Nothing is proved yet.
+See `docs/plan.md` for the module plan and current status.  Done so far:
+`Glue` (the Erdős-problem statement from the construction), `Enumeration`
+(condition (7.1)), `Defs` (partial fractions), `Reduction` (the triangular
+induction: rational `f`-sums imply `RationalShifts`).  Remaining: the
+construction itself (`SlopeLemma`, `LatticeLemma`, `Growth`, `Algorithm`,
+`Convergence`, `Main`).
 -/
 
 namespace Erdos266
