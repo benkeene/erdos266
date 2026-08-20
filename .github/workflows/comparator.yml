@@ -1,0 +1,46 @@
+name: Comparator
+
+# Manual dispatch: replays the Palomar-style mechanical verification —
+# builds Challenge and Solution, exports both with lean4export, compares
+# the declarations, audits axioms, and replays the proofs through the
+# Lean kernel — under the landrun sandbox, as Palomar's CI does.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  comparator:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan
+        run: |
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Install landrun
+        run: |
+          sudo apt-get update && sudo apt-get install -y golang-go
+          git clone --depth 1 https://github.com/Zouuup/landrun /tmp/landrun
+          cd /tmp/landrun
+          go build -o landrun ./cmd/landrun
+          sudo mv landrun /usr/local/bin/
+
+      - name: Build comparator and lean4export
+        run: |
+          git clone --depth 1 https://github.com/leanprover/comparator /tmp/comparator
+          cd /tmp/comparator
+          lake build
+          cd .lake/packages/lean4export
+          lake build
+          echo "/tmp/comparator/.lake/packages/lean4export/.lake/build/bin" >> "$GITHUB_PATH"
+
+      - name: Get Mathlib cache
+        run: lake exe cache get
+
+      - name: Run comparator
+        run: lake env /tmp/comparator/.lake/build/bin/comparator comparator.json
