@@ -101,7 +101,7 @@ for each fixed $i$ the poles affect only an explicitly finite prefix.
 | `SlopeLemma.lean` | Lemma 7.1, existential constant (via telescoping products, no calculus; constant `3(i+1)²16^i`) | **done** |
 | `LatticeLemma.lean` | Lemma 7.2: adjugate-based integer preimages, toward-zero rounding, Vandermonde determinant (no operator norms) | **done** |
 | `Growth.lean` | `N k = 2^(k^2)`, `M k`, cross-block separation, `growth_eventually` ((7.17)-enabler), crude `f`-bounds | **done** (`m(d)`, `d(k)`, `δ` move to `Algorithm`) |
-| `Algorithm.lean` | recursive block construction + invariant (8.5) | — |
+| `Algorithm.lean` + `Recursion.lean` | setup layer (constants, mseq, dOf, tails) and the recursive block construction with invariant (8.5) — `inv_run` | **done** |
 | `Convergence.lean` | monotone/positive/summable; nested intervals ⇒ `∑ f i (a n) = x i` | — |
 | `Main.lean` | assemble `erdos_266_rational_shifts` | — |
 

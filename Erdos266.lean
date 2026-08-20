@@ -9,6 +9,7 @@ import Erdos266.Defs
 import Erdos266.Enumeration
 import Erdos266.Glue
 import Erdos266.Growth
+import Erdos266.Recursion
 import Erdos266.Reduction
 import Erdos266.LatticeLemma
 import Erdos266.SlopeLemma
