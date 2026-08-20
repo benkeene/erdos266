@@ -95,10 +95,10 @@ for each fixed $i$ the poles affect only an explicitly finite prefix.
 | Module | Content | Status |
 |---|---|---|
 | `Glue.lean` | #266 negative answer from `RationalShifts` | **done** |
-| `Enumeration.lean` | bijection `t : ℕ → ℚ`, `\|t j\| ≤ j+1` (greedy over a `Denumerable` enumeration) | in progress |
-| `Defs.lean` | `f i x`, partial-fraction coefficients `m i j`, basic facts (`m i i ≠ 0`, the identity away from poles) | — |
-| `Reduction.lean` | strong induction: `(∀ i ≥ 1, ∑ f i (a n) ∈ ℚ)` + summability + monotone ⇒ `RationalShifts a` (with pole corrections) | — |
-| `SlopeLemma.lean` | Lemma 7.1, existential constant | — |
+| `Enumeration.lean` | bijection `t : ℕ → ℚ`, `\|t j\| ≤ j+1` (greedy over a `Denumerable` enumeration) | **done** |
+| `Defs.lean` | `f i x`, partial-fraction coefficients `m i j`, basic facts (`m i i ≠ 0`, the identity away from poles) | **done** |
+| `Reduction.lean` | strong induction: `(∀ i ≥ 1, ∑ f i (a n) ∈ ℚ)` + monotone ⇒ `RationalShifts a` (with pole corrections; summability hypothesis turned out unnecessary) | **done** |
+| `SlopeLemma.lean` | Lemma 7.1, existential constant (via telescoping products, no calculus; constant `3(i+1)²16^i`) | **done** |
 | `LatticeLemma.lean` | Lemma 7.2 via `Matrix.vandermonde`; `ε_d` from invertibility, box inclusion (7.5) | — |
 | `Growth.lean` | `N k = 2^(k^2)`, (8.1), (8.2)-consequences, `M k`, `m(d)`, `d(k)`, `δ i k`, (7.17) | — |
 | `Algorithm.lean` | recursive block construction + invariant (8.5) | — |
@@ -111,11 +111,9 @@ then SlopeLemma → LatticeLemma → Growth → Algorithm → Convergence → Ma
 
 ## Risk register
 
-- **Lemma 7.1** is a 6-line informal estimate that expands badly (polynomial
-  cancellation viewed in $N$). Mitigation: existential constant, induction
-  on $i$, or a derivative-based bound (mean value theorem on $f_i$, whose
-  derivative is a sum of $i$ terms $-f_i(x)/(x+t_j)$) — likely cleaner than
-  the paper's coefficient computation.
+- ~~Lemma 7.1~~ done, via a telescoping-product route with no calculus:
+  `∏(N+n+tⱼ) - ∏(N+tⱼ) = n·∑ₖ(hybrid products)` gives the linear term
+  exactly, and a single induction bounds every product against `N^k`.
 - **Algorithm.lean** carries a recursive construction with a per-step choice
   from a set-inclusion; needs a careful recursion package (define the state
   as a structure, recurse with `Nat.rec`, extract via choice).
