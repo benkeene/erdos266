@@ -99,7 +99,7 @@ for each fixed $i$ the poles affect only an explicitly finite prefix.
 | `Defs.lean` | `f i x`, partial-fraction coefficients `m i j`, basic facts (`m i i ≠ 0`, the identity away from poles) | **done** |
 | `Reduction.lean` | strong induction: `(∀ i ≥ 1, ∑ f i (a n) ∈ ℚ)` + monotone ⇒ `RationalShifts a` (with pole corrections; summability hypothesis turned out unnecessary) | **done** |
 | `SlopeLemma.lean` | Lemma 7.1, existential constant (via telescoping products, no calculus; constant `3(i+1)²16^i`) | **done** |
-| `LatticeLemma.lean` | Lemma 7.2 via `Matrix.vandermonde`; `ε_d` from invertibility, box inclusion (7.5) | — |
+| `LatticeLemma.lean` | Lemma 7.2: adjugate-based integer preimages, toward-zero rounding, Vandermonde determinant (no operator norms) | **done** |
 | `Growth.lean` | `N k = 2^(k^2)`, (8.1), (8.2)-consequences, `M k`, `m(d)`, `d(k)`, `δ i k`, (7.17) | — |
 | `Algorithm.lean` | recursive block construction + invariant (8.5) | — |
 | `Convergence.lean` | monotone/positive/summable; nested intervals ⇒ `∑ f i (a n) = x i` | — |
