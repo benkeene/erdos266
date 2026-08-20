@@ -90,12 +90,15 @@ automation:
       models: ["Claude Fable 5 (Anthropic)"]
       framework: "Claude Code"
       role: >-
-        Scaffolded the repository and is expected to write most of the Lean
-        source, working interactively in Claude Code under the direction and
-        review of the author: choosing Lean formulations, finding and
-        repairing proofs.  The author selects the targets, makes the
-        mathematical decisions, audits the Challenge statements against the
-        sources, and reviews the output as it is produced.
+        Wrote essentially all of the Lean source in this repository, working
+        interactively in Claude Code under the direction and review of the
+        author across many sessions: choosing the Lean formulations, finding
+        and repairing proofs, and designing the proof architecture (the
+        telescoping route to Lemma 7.1, the adjugate route to Lemma 7.2, the
+        simplified scale sequence N_k = 2^(k^2)).  The author selected the
+        target, made the mathematical decisions, audited the Challenge
+        statements against the sources, and reviewed the output as it was
+        produced.
 
 review:
   status: self-assessed
@@ -135,5 +138,5 @@ alignment:
       status: proved
       note: >-
         The construction that yields the negative answer; see
-        fidelity.divergences for the integer-versus-rational-shift point
-        under verification.
+        fidelity.divergences for the resolved integer-versus-rational-shift
+        point.
