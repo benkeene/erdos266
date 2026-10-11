@@ -44,7 +44,8 @@ Kovač and Tao (*On several irrationality problems for Ahmes series*,
 * "The sum is rational" is phrased as `∃ q : ℚ, HasSum (…) q`: the series
   converges and its limit is (the real embedding of) a rational number.
   `HasSum` for `ℕ`-indexed real series is unconditional convergence, which
-  for these positive-term series agrees with the ordinary sum.
+  for these eventually positive series (a negative rational shift makes at
+  most finitely many terms negative) agrees with the ordinary sum.
 * In the second theorem the shift ranges over `t : ℚ`, excluded only from the
   values `-aₙ` where a term would be undefined.  In Lean, division by zero
   yields zero rather than being undefined, so the exclusion is what makes the
@@ -63,9 +64,10 @@ Nothing here is claimed to be new mathematics: the theorems are due to Kovač
 and Tao, and this repository contributes their formalization.  See
 `formalization.yaml` and README.md for sources, the role of AI in producing
 the development, and known limitations.  Statement fidelity was checked
-against the paper: `erdos_266_rational_shifts` is Theorem 2.11 of [KoTa24]
-(arXiv v4) verbatim — the rational-shift form `t ∈ ℚ \ {-aₙ}` is what the
-paper proves (its abstract states only the integer-shift specialization),
+against the paper: `erdos_266_rational_shifts` formalizes the statement of
+Theorem 2.11 of [KoTa24] (arXiv v4) — the rational-shift form
+`t ∈ ℚ \ {-aₙ}` is what the paper proves (its abstract states only the
+integer-shift specialization),
 and `erdos_266` is the negative answer to Stolarsky's conjecture in the form
 recorded by Erdős–Graham (integer shifts `t ≥ 1`), which Theorem 2.11
 implies.

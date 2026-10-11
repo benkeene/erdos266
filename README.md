@@ -1,9 +1,14 @@
 # Erdős problem #266 — a Lean formalization of the Kovač–Tao disproof of Stolarsky's conjecture
 
-**Status: complete.**  Both theorems are fully proved; the only `sorry`s in
-the repository are the two deliberate holes in `Challenge.lean` (the
-Comparator convention), and both compared theorems depend on exactly
-`propext`, `Classical.choice` and `Quot.sound`.
+**Status: complete; registered with Palomar.**  Both main results are
+proved, with no unresolved `sorry` in `Solution.lean` or the `Erdos266/`
+library; `Challenge.lean` contains two deliberate Comparator placeholders.
+Palomar registration
+[PALOMAR-2026-08-20-000008](https://palomar-registry.org/) (2026-08-20)
+records verification at commit `aa0cd43fb45d4f8a3019bf8925424c06b1e67874`:
+Comparator checked both statements, replayed through Lean's kernel and the
+independent nanoda kernel, using only `propext`, `Classical.choice` and
+`Quot.sound`.
 
 ## What this is
 
@@ -13,7 +18,7 @@ convergent, there is an integer $t \ge 1$ such that $\sum 1/(a_n+t)$ is
 irrational.  Kovač and Tao disproved this in
 [*On several irrationality problems for Ahmes series*](https://arxiv.org/abs/2406.17593),
 constructing a strictly increasing sequence of positive integers whose shifted
-series all have rational sums.
+series have rational sums for every admissible rational shift.
 
 This repository formalizes that resolution in Lean 4 against
 [Mathlib](https://github.com/leanprover-community/mathlib4), in the layout
@@ -23,7 +28,7 @@ expected by the [Palomar registry](https://palomar-registry.org/):
   deliberate `sorry` holes), adapted from the
   [Formal Conjectures](https://github.com/google-deepmind/formal-conjectures)
   statement of the problem (Apache 2.0).
-- [`Solution.lean`](Solution.lean) — the same statements, to be proved by thin
+- [`Solution.lean`](Solution.lean) — the same statements, proved by thin
   bridges into the development library.
 - [`Erdos266/`](Erdos266/) — the development library where the construction
   is formalized.
@@ -46,9 +51,13 @@ interpolation), `Reduction` (the triangular induction turning rational
 (extraction of the sequence and the `HasSum`s), `Glue` (the Erdős-problem
 statement from the construction).
 
-Remaining steps toward registration: local Comparator run, final review,
-Palomar submission, and a PR of the formalization link to
-[teorth/erdosproblems](https://github.com/teorth/erdosproblems).
+Palomar registration is complete at the commit identified above.  Remaining
+dissemination work: propose proof citations for the corresponding
+[Formal Conjectures](https://github.com/google-deepmind/formal-conjectures)
+declarations (`erdos_266` and `erdos_266.variants.all_rationals`), and submit
+the formalization link to
+[teorth/erdosproblems](https://github.com/teorth/erdosproblems).  Independent
+human review of the statement correspondence remains welcome.
 
 ## Building
 
@@ -59,10 +68,10 @@ lake build
 
 ## Authorship and the role of AI
 
-The formalization is produced with heavy AI assistance — Claude (Anthropic),
-working in Claude Code, is expected to write most of the Lean source — under
-the direction and review of the author, who selects the targets, makes the
-mathematical decisions, and audits the statements against the sources.  See
+The formalization was produced with heavy AI assistance — Claude (Anthropic),
+working in Claude Code, wrote essentially all of the Lean source — under the
+direction and review of the author, who selected the target, made the
+mathematical decisions, and audited the statements against the sources.  See
 `formalization.yaml` for the full disclosure.  The mathematics formalized
 here is due to Kovač and Tao; no mathematical novelty is claimed.
 

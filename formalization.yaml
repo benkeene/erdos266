@@ -26,25 +26,40 @@ classification:
 
 status:
   scope: >-
-    COMPLETE.  Both compared theorems are fully proved.  The only two
-    `sorry`s in the repository are the deliberate holes in Challenge.lean
-    (the Comparator convention); Solution.lean and the entire Erdos266
-    development library are sorry-free, and both compared theorems depend
-    on exactly propext, Classical.choice and Quot.sound.
-  sorry_count: 2
+    COMPLETE for both listed main results.  Solution.lean and the entire
+    Erdos266 development library contain no unresolved sorries.
+    Challenge.lean contains two deliberate theorem placeholders (the
+    Comparator convention: the statements of record, with `sorry` as proof);
+    these are excluded from sorry_count under the v0.4 definition of that
+    field.  Comparator checks the proved Solution declarations against
+    those statements.  Both proved declarations depend on exactly propext,
+    Classical.choice and Quot.sound.  Registered with Palomar as
+    PALOMAR-2026-08-20-000008 at commit aa0cd43fb45d (2026-08-20).
+  sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
   main_results:
-    - "Erdos266.erdos_266"
-    - "Erdos266.erdos_266_rational_shifts"
+    - declaration: "Erdos266.erdos_266"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
+    - declaration: "Erdos266.erdos_266_rational_shifts"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
 
 fidelity:
   divergences: >-
     The arXiv abstract of [KoTa24] states the final construction for integer
     shifts (t in Z) only; the body of the paper proves more.  Checked against
-    arXiv v4 (14 Jul 2025): Erdos266.erdos_266_rational_shifts is Theorem
-    2.11 verbatim — a strictly increasing sequence of positive integers whose
-    shifted series converges to a rational for every t in Q avoiding {-a_n} —
+    arXiv v4 (14 Jul 2025): Erdos266.erdos_266_rational_shifts formalizes the
+    statement of Theorem 2.11 — a strictly increasing sequence of positive
+    integers whose shifted series converges to a rational for every t in Q
+    avoiding {-a_n} —
     and Section 2.3 states explicitly that the conjecture is disproved "not
     only when t ranges over the integers" but for rational t.
     Erdos266.erdos_266 is the negative answer to Stolarsky's conjecture as
@@ -56,17 +71,20 @@ fidelity:
 sources:
   - title: "On several irrationality problems for Ahmes series"
     authors: ["Vjekoslav Kovač", "Terence Tao"]
-    type: "article"
+    type: "paper"
     id: "https://arxiv.org/abs/2406.17593"
+    location: "Theorem 2.11 and Section 2.3 (arXiv v4, 14 Jul 2025)"
     relationship: formalizes
+    author_endorsement: "not-contacted"
     note: >-
       The paper whose construction this development formalizes.  The negative
       answer to Stolarsky's question (Erdős problem #266) is its final result.
 
   - title: "Erdős problem #266 (erdosproblems.com)"
     authors: ["Thomas F. Bloom (site); problem due to Kenneth Stolarsky, recorded by Erdős and Graham"]
-    type: "web page"
+    type: "other"
     id: "https://www.erdosproblems.com/266"
+    location: "Problem page for #266"
     relationship: background
     note: >-
       The canonical record of the problem, its provenance, and its resolution
@@ -74,15 +92,27 @@ sources:
 
   - title: "Formal Conjectures: ErdosProblems/266.lean"
     authors: ["The Formal Conjectures Authors"]
-    type: "code"
+    type: "other"
     id: "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/266.lean"
+    location: "Declarations erdos_266 and erdos_266.variants.all_rationals"
     relationship: adapts
     note: >-
       The formal statements in Challenge.lean are adapted from this file
       (Apache 2.0): category attributes removed, declarations renamed into
       the Erdos266 namespace, mathematical content unchanged.
 
-related_formalizations: []
+related_formalizations:
+  - id: "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/266.lean"
+    relationship: adapts
+    note: >-
+      Statement source.  Mapping: erdos_266 -> Erdos266.erdos_266;
+      erdos_266.variants.all_rationals -> Erdos266.erdos_266_rational_shifts.
+  - id: "https://github.com/plby/lean-proofs/blob/8822f7ddef30fadbd92e1c6ab4ed897af356af5e/src/latest/ErdosProblems/Erdos266.lean"
+    relationship: other
+    note: >-
+      The proof of erdos_266 cited by the Formal Conjectures project.
+      Developed separately; no claim of priority or of independence from
+      it is made here, and it has not been compared with this development.
 
 automation:
   methods:
@@ -99,6 +129,15 @@ automation:
         target, made the mathematical decisions, audited the Challenge
         statements against the sources, and reviewed the output as it was
         produced.
+  notes: >-
+    Claude (Anthropic), working in Claude Code, wrote essentially all of the
+    Lean source interactively under the author's direction and review across
+    many sessions: choosing formulations, finding and repairing proofs, and
+    designing the proof architecture.  The author selected the target, made
+    the mathematical decisions, audited the Challenge statements against
+    the sources, and reviewed the output as it was produced.  This is an
+    AI-assisted formalization of an existing human result, not an AI
+    discovery.
 
 review:
   status: self-assessed
@@ -106,8 +145,13 @@ review:
     - "Ben Keene"
   notes: >-
     The author directs and reviews the development as it is produced.  No
-    external or independent review has been performed.  Every step is checked
-    by Lean.
+    independent human mathematical review of the statements or the
+    correspondence to the sources has been performed.  Separately, every
+    step is checked by Lean, and the Palomar registration
+    (PALOMAR-2026-08-20-000008, commit aa0cd43fb45d) records an automated
+    Comparator check of both compared theorems replayed through Lean's
+    kernel and the independent nanoda kernel; that is machine verification,
+    not peer review.
 
 known_gaps: []
 
@@ -117,9 +161,12 @@ limitations:
     this repository contributes only its formalization, and the formal
     statements are adapted from the Formal Conjectures project.
   - >-
-    The compared theorems depend on propext, Classical.choice and Quot.sound
-    only, with no sorry outside the two deliberate holes in Challenge.lean,
-    no project-defined axiom, no native_decide, and no unsafe code.
+    The two `sorry` placeholders in Challenge.lean specify the Comparator
+    targets; they are not unresolved proof obligations in Solution.lean or
+    the Erdos266 library, and they are excluded from sorry_count.  The
+    compared theorems depend on propext, Classical.choice and Quot.sound
+    only; the project-authored sources contain no additional axiom, no
+    native_decide, and no unsafe code.
 
 alignment:
   namespace: "Erdos266"
