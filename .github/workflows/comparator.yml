@@ -1,9 +1,10 @@
 name: Comparator
 
-# Manual dispatch: replays the Palomar-style mechanical verification —
-# builds Challenge and Solution, exports both with lean4export, compares
-# the declarations, audits axioms, and replays the proofs through the
-# Lean kernel — under the landrun sandbox, as Palomar's CI does.
+# Manual dispatch: judges Solution against Challenge the way Palomar does,
+# with the `lake comparator` bundled in this project's own toolchain
+# (leanexport, leanchecker, and the independent NanoDa and con-ron kernels),
+# under a bubblewrap sandbox. Nothing is built from a separate pin, so the
+# judge always matches `lean-toolchain`.
 on:
   workflow_dispatch:
 
@@ -12,35 +13,24 @@ permissions:
 
 jobs:
   comparator:
+    name: Check statement against solution
     runs-on: ubuntu-latest
-
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install elan
+        with:
+          persist-credentials: false
+      - name: Check Lean source requirements before builds
+        run: python3 scripts/check-lean-sources.py
+      - uses: leanprover/lean-action@v1
+        with:
+          build: false
+      - name: Install bubblewrap for lake comparator's sandbox
+        # Ubuntu 24.04 restricts unprivileged user namespaces through AppArmor,
+        # which `bwrap` needs for the sandbox; the runner is disposable.
         run: |
-          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y --default-toolchain none
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-
-      - name: Install landrun
-        run: |
-          sudo apt-get update && sudo apt-get install -y golang-go
-          git clone --depth 1 https://github.com/Zouuup/landrun /tmp/landrun
-          cd /tmp/landrun
-          go build -o landrun ./cmd/landrun
-          sudo mv landrun /usr/local/bin/
-
-      - name: Build comparator and lean4export
-        run: |
-          git clone --depth 1 https://github.com/leanprover/comparator /tmp/comparator
-          cd /tmp/comparator
-          lake build
-          cd .lake/packages/lean4export
-          lake build
-          echo "/tmp/comparator/.lake/packages/lean4export/.lake/build/bin" >> "$GITHUB_PATH"
-
-      - name: Get Mathlib cache
-        run: lake exe cache get
-
-      - name: Run comparator
-        run: lake env /tmp/comparator/.lake/build/bin/comparator comparator.json
+          sudo apt-get update -qq >/dev/null
+          sudo apt-get install -y -qq bubblewrap >/dev/null
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      - name: Run the toolchain's lake comparator
+        run: ./scripts/verify-comparator.sh
