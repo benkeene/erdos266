@@ -10,7 +10,8 @@ Conjectures Authors, Apache 2.0 license.
 -/
 module
 
-public import Mathlib
+public import Mathlib.NumberTheory.Real.Irrational
+public import Mathlib.Topology.Algebra.InfiniteSum.Defs
 
 /-!
 # Erdős problem #266: the Kovač–Tao disproof of Stolarsky's conjecture
