@@ -8,7 +8,9 @@ project (https://github.com/google-deepmind/formal-conjectures, file
 FormalConjectures/ErdosProblems/266.lean), Copyright 2025 The Formal
 Conjectures Authors, Apache 2.0 license.
 -/
-import Mathlib
+module
+
+public import Mathlib
 
 /-!
 # Erdős problem #266: the Kovač–Tao disproof of Stolarsky's conjecture
@@ -76,6 +78,8 @@ The proofs are developed in the `Erdos266` library of this repository and are
 compared against these statements by Comparator.  They are to use `propext`,
 `Classical.choice` and `Quot.sound` only.
 -/
+
+@[expose] public section
 
 namespace Erdos266
 

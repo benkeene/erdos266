@@ -3,8 +3,10 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Erdos266.Recursion
-import Erdos266.Reduction
+module
+
+public import Erdos266.Recursion
+public import Erdos266.Reduction
 
 /-!
 # The construction: extraction and convergence
@@ -23,6 +25,8 @@ convergence of all partial sums, and eventual nonnegativity of the terms
 upgrades that to `HasSum`.  Feeding the result into the reduction closes
 the main theorem.
 -/
+
+@[expose] public section
 
 namespace Erdos266
 

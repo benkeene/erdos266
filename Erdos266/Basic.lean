@@ -3,7 +3,9 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Mathlib
+module
+
+public import Mathlib
 
 /-!
 # The Kovač–Tao construction: development library
@@ -21,6 +23,8 @@ induction: rational `f`-sums imply `RationalShifts`).  Remaining: the
 construction itself (`SlopeLemma`, `LatticeLemma`, `Growth`, `Algorithm`,
 `Convergence`, `Main`).
 -/
+
+@[expose] public section
 
 namespace Erdos266
 

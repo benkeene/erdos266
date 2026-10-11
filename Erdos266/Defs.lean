@@ -3,7 +3,9 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Erdos266.Enumeration
+module
+
+public import Erdos266.Enumeration
 
 /-!
 # The functions `fᵢ` and their partial-fraction decomposition
@@ -19,6 +21,8 @@ poles `f i x = ∑_{j<i} m i j · (x + tⱼ)⁻¹` (theorem `f_eq_sum`).  The pr
 divides the Lagrange interpolation identity `∑ⱼ basisⱼ = 1` (interpolating
 the constant `1` at the nodes `-tⱼ`) by `∏_{k<i}(x + tₖ)`.
 -/
+
+@[expose] public section
 
 namespace Erdos266
 

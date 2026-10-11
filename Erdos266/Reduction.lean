@@ -3,8 +3,10 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Erdos266.Defs
-import Erdos266.Glue
+module
+
+public import Erdos266.Defs
+public import Erdos266.Glue
 
 /-!
 # Reduction: from rational `f`-sums to `RationalShifts`
@@ -27,6 +29,8 @@ Everything is phrased with Lean's junk values: at a pole both `f` and the
 offending shifted term are literally `0`, so all series are well-defined
 `HasSum` statements with no side conditions.
 -/
+
+@[expose] public section
 
 namespace Erdos266
 

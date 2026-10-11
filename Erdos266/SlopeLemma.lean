@@ -3,7 +3,9 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Erdos266.Defs
+module
+
+public import Erdos266.Defs
 
 /-!
 # The slope lemma (Lemma 7.1 of [KoTa24])
@@ -32,6 +34,8 @@ route is elementary algebra with no calculus and no explicit constants:
 The constant produced is `3·(i+1)²·16^i` — far from the paper's `2^10i`,
 in either direction, but only existence matters downstream.
 -/
+
+@[expose] public section
 
 namespace Erdos266
 
@@ -73,7 +77,7 @@ lemma abs_prod_le {ι : Type*} {s : Finset ι} {c : ι → ℝ} {N B : ℝ}
     |∏ j ∈ s, (N + c j)| ≤ (2 * N) ^ s.card := by
   have hN0 : 0 ≤ N := hB.trans hBN
   rw [abs_prod, ← prod_const]
-  refine prod_le_prod (fun j _ => abs_nonneg _) fun j hj => ?_
+  refine prod_le_prod₀ (fun j _ => abs_nonneg _) fun j hj => ?_
   have := hc j hj
   rw [abs_le] at this ⊢
   constructor <;> nlinarith
@@ -84,7 +88,7 @@ lemma prod_lower {ι : Type*} {s : Finset ι} {c : ι → ℝ} {N B : ℝ}
     (N / 2) ^ s.card ≤ ∏ j ∈ s, (N + c j) := by
   have hN0 : 0 ≤ N := by linarith
   rw [← prod_const]
-  refine prod_le_prod (fun j _ => by positivity) fun j hj => ?_
+  refine prod_le_prod₀ (fun j _ => by positivity) fun j hj => ?_
   have := hc j hj
   rw [abs_le] at this
   linarith [this.1]

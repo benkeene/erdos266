@@ -3,7 +3,9 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Erdos266.Algorithm
+module
+
+public import Erdos266.Algorithm
 
 /-!
 # The construction: the recursion
@@ -25,6 +27,8 @@ The step function takes the good branch only when the invariant holds
 branch is always taken from `k = 2` on.  Extraction of the sequence and
 the convergence proof live in `Convergence.lean`.
 -/
+
+@[expose] public section
 
 namespace Erdos266
 

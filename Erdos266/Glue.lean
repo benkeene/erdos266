@@ -3,7 +3,9 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Mathlib
+module
+
+public import Mathlib
 
 /-!
 # Glue: the negative answer to Erdős #266 from the rational-shifts construction
@@ -24,6 +26,8 @@ The two steps are bookkeeping:
   integer shift `t ≥ 1` gives a rational value for the shifted series,
   contradicting its claimed irrationality.
 -/
+
+@[expose] public section
 
 namespace Erdos266
 

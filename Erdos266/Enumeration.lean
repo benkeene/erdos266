@@ -3,7 +3,9 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Mathlib
+module
+
+public import Mathlib
 
 /-!
 # A growth-bounded enumeration of `ℚ`
@@ -21,6 +23,8 @@ Injectivity is immediate; surjectivity is a pigeonhole argument: a rational
 greedy choice at each such stage has enumeration index at most that of `q`,
 and there are only finitely many such indices for infinitely many stages.
 -/
+
+@[expose] public section
 
 namespace Erdos266
 

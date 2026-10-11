@@ -3,7 +3,9 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Erdos266.Defs
+module
+
+public import Erdos266.Defs
 
 /-!
 # Growth data for the construction
@@ -25,6 +27,8 @@ arithmetic the algorithm needs:
 * crude bounds for `f`: positivity and `f i x ≤ (2/x)^i` for `x ≥ 2i`,
   which the tail estimates of the convergence step use.
 -/
+
+@[expose] public section
 
 namespace Erdos266
 
@@ -270,7 +274,7 @@ lemma f_le {i : ℕ} {x : ℝ} (hx : (2 * i : ℝ) ≤ x) (hx0 : 0 < x) :
   have hprod : (x / 2) ^ i ≤ ∏ j ∈ range i, (x + (tSeq j : ℝ)) := by
     calc (x / 2) ^ i = ∏ _j ∈ range i, (x / 2) := by rw [prod_const, card_range]
     _ ≤ ∏ j ∈ range i, (x + (tSeq j : ℝ)) :=
-        prod_le_prod (fun j _ => (half_pos hx0).le) fun j hj => factor_ge hj hx
+        prod_le_prod₀ (fun j _ => (half_pos hx0).le) fun j hj => factor_ge hj hx
   have h1 : (0:ℝ) < (x / 2) ^ i := by positivity
   calc (∏ j ∈ range i, (x + (tSeq j : ℝ)))⁻¹
       ≤ ((x / 2) ^ i)⁻¹ := inv_anti₀ h1 hprod

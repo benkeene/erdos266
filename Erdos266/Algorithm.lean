@@ -3,8 +3,10 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Erdos266.LatticeLemma
-import Erdos266.Growth
+module
+
+public import Erdos266.LatticeLemma
+public import Erdos266.Growth
 
 /-!
 # The construction: setup layer
@@ -29,6 +31,8 @@ This file assembles the data the recursive construction (Section 8 of
 The recursion itself and the extraction of the sequence live in
 `Convergence.lean`.
 -/
+
+@[expose] public section
 
 namespace Erdos266
 

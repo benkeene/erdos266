@@ -3,7 +3,9 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Erdos266.SlopeLemma
+module
+
+public import Erdos266.SlopeLemma
 
 /-!
 # The lattice lemma (Lemma 7.2 of [KoTa24])
@@ -36,6 +38,8 @@ The proof composes:
 No operator norms and no matrix inverses: all bounds come from
 `abs_mulVec_le` (a row-sum estimate) and the adjugate identity.
 -/
+
+@[expose] public section
 
 namespace Erdos266
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 Ben Keene. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ben Keene
 -/
-import Erdos266
+module
+
+public import Erdos266
 
 /-!
 # Solutions to the Challenge
@@ -16,6 +18,8 @@ Both are complete: the construction is `Erdos266.construction_exists`
 reduction `Erdos266.rational_shifts_of_construction`), and the negative
 answer to the Erdős problem follows by `Erdos266.erdos_266_of_rationalShifts`.
 -/
+
+public section
 
 namespace Erdos266
 
