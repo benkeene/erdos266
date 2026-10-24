@@ -1,14 +1,23 @@
 # Erdős problem #266 — a Lean formalization of the Kovač–Tao disproof of Stolarsky's conjecture
 
-**Status: complete; registered with Palomar.**  Both main results are
-proved, with no unresolved `sorry` in `Solution.lean` or the `Erdos266/`
-library; `Challenge.lean` contains two deliberate Comparator placeholders.
-Palomar registration
-[PALOMAR-2026-08-20-000008](https://palomar-registry.org/) (2026-08-20)
-records verification at commit `aa0cd43fb45d4f8a3019bf8925424c06b1e67874`:
-Comparator checked both statements, replayed through Lean's kernel and the
-independent nanoda kernel, using only `propext`, `Classical.choice` and
-`Quot.sound`.
+**Status: complete; registered with Palomar; cited by Formal Conjectures.**
+Both main results are proved, with no unresolved `sorry` in `Solution.lean`
+or the `Erdos266/` library; `Challenge.lean` contains two deliberate
+Comparator placeholders.  Palomar registration
+[PALOMAR-2026-08-20-000008 v2](https://palomar-registry.org/entry?id=PALOMAR-2026-08-20-000008&version=2)
+(2026-10-12) records verification at commit
+`ef01b23804a60669f24b25733f1a2b688084609d` (Lean and Mathlib
+`v4.35.0-rc3`): Comparator checked both statements
+(`Erdos266.erdos_266`, `Erdos266.erdos_266_rational_shifts`), replayed
+through the nanoda and con-ron kernels, using only `propext`,
+`Classical.choice` and `Quot.sound`; registry review outcome `neutral`
+(not an endorsement), no warnings.  Version 1 (2026-08-20) recorded the
+same result at commit `aa0cd43fb45d4f8a3019bf8925424c06b1e67874`.
+The [Formal Conjectures](https://github.com/google-deepmind/formal-conjectures)
+project cites this formalization as the proof of
+`erdos_266.variants.all_rationals`
+([PR #7171](https://github.com/google-deepmind/formal-conjectures/pull/7171),
+merged 2026-10-22).
 
 ## What this is
 
@@ -51,13 +60,33 @@ interpolation), `Reduction` (the triangular induction turning rational
 (extraction of the sequence and the `HasSum`s), `Glue` (the Erdős-problem
 statement from the construction).
 
-Palomar registration is complete at the commit identified above.  Remaining
-dissemination work: propose proof citations for the corresponding
-[Formal Conjectures](https://github.com/google-deepmind/formal-conjectures)
-declarations (`erdos_266` and `erdos_266.variants.all_rationals`), and submit
-the formalization link to
+Palomar registration is complete at the commit identified above.
+Dissemination: the Formal Conjectures proof citation for
+`erdos_266.variants.all_rationals` was merged on 2026-10-22
+([PR #7171](https://github.com/google-deepmind/formal-conjectures/pull/7171));
+the existing citation on `erdos_266` (plby/lean-proofs) was left in place,
+the two formalizations being independent.  Still to do: submit the
+formalization link to
 [teorth/erdosproblems](https://github.com/teorth/erdosproblems).  Independent
 human review of the statement correspondence remains welcome.
+
+## Palomar entry and citation
+
+This formalization is hosted on Palomar as
+[PALOMAR-2026-08-20-000008 v2](https://palomar-registry.org/entry?id=PALOMAR-2026-08-20-000008&version=2);
+the pinned commit is preserved in
+https://github.com/PalomarArchive/benkeene--erdos266--5089d7151e9d.
+To cite it:
+```bibtex
+@misc{palomar-2026-08-20-000008-v2,
+  author = {{Ben Keene}},
+  title = {{Erdős problem #266: the Kovač–Tao disproof of Stolarsky's conjecture}},
+  year = {2026},
+  howpublished = {Palomar, PALOMAR-2026-08-20-000008 v2},
+  url = {https://palomar-registry.org/entry?id=PALOMAR-2026-08-20-000008&version=2},
+}
+```
+Commits on main after `ef01b23` are not part of version 2.
 
 ## Building
 
